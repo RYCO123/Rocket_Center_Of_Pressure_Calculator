@@ -2,7 +2,7 @@ import numpy as np
 
 class CalculateCOP:
     """
-    Calculate thes Center of Pressure (COP) using the Barrowman method.
+    Calculate the Center of Pressure (COP) using the Barrowman method.
 
     This method is only accurate for subsonic aerodynamic analysis of slender bodies.
 
@@ -27,7 +27,7 @@ class CalculateCOP:
                  N: int
                  ):
         """
-        Initializes the rocket's geometric data.
+        Initialize the rocket's geometric data.
 
         Args:
             nose_type (str): Type of nose cone ('ogive' or 'cone').
@@ -71,7 +71,7 @@ class CalculateCOP:
 
 
     def constant_calculations(self):
-        """Calculate the nose. transition and fin constants"""
+        """Calculate the nose, transition and fin constants"""
         cnn = 2
         cnt = 2 * ((self.dR/self.d)**2 - (self.dF/self.d)**2)
         cnf = (1 + (self.R/(self.S + self.R))) * (4 * self.N * (self.S/self.d)**2) / (1 + np.sqrt(1 + ((2 * self.LF)/(self.CR + self.CT))**2 ))
@@ -79,7 +79,7 @@ class CalculateCOP:
     
 
     def nose_contribution(self):
-        """Calculate the Contributino of the Nose to COP"""
+        """Calculate the contribution of the nose to COP"""
         if self.nose_type == 'cone':
             return 0.666 * self.Ln
         elif self.nose_type == 'ogive':
@@ -111,7 +111,7 @@ class CalculateCOP:
         return self.XB + ((self.XR/3) * ((self.CR + 2 * self.CT)/(self.CR + self.CT))) + (1/6) * ((self.CR + self.CT) - ((self.CR * self.CT)/(self.CR + self.CT)))
 
     def net_COP(self):
-        """Calcualtes the location of COP as measured from the nose down the length of the rocket"""
+        """Calculate the location of COP as measured from the nose down the length of the rocket"""
         cnn, cnt, cnf = self.constant_calculations()
         Xn = self.nose_contribution()
         Xt = self.transition_contribution()

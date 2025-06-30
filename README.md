@@ -29,6 +29,14 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Quick Example
+
+Run the included example script:
+
+```bash
+python example.py
+```
+
 ### Basic Example
 
 ```python

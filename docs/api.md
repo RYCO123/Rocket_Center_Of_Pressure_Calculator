@@ -6,6 +6,8 @@ All length-based units must be consistent (e.g., all in inches or all in centime
 
 For a diagram and detailed explanation of each variable, see the [Barrowman Equations page](https://www.rocketmime.com/rockets/Barrowman.html).
 
+See `example.py` for a complete usage example.
+
 ---
 
 ## `CalculateCOP` Class

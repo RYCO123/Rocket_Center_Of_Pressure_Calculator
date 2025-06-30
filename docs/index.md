@@ -4,7 +4,13 @@ This project provides a Python class to calculate a rocket's Center of Pressure 
 
 ## Quick Start
 
-Install dependencies and use the `CalculateCOP` class:
+Run the example script to see it in action:
+
+```bash
+python example.py
+```
+
+Or use the `CalculateCOP` class directly:
 
 ```python
 from calculator import CalculateCOP
