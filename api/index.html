@@ -1,0 +1,616 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>API Reference - Rocket COP Calculator</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calculatecop-class" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Rocket COP Calculator" class="md-header__button md-logo" aria-label="Rocket COP Calculator" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rocket COP Calculator
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Rocket COP Calculator" class="md-nav__button md-logo" aria-label="Rocket COP Calculator" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rocket COP Calculator
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#calculatecop-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      CalculateCOP Class
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CalculateCOP Class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rocket-with-a-straight-body-tube" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rocket with a straight body tube
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rocket-with-a-transition-from-a-larger-to-smaller-diameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rocket with a transition from a larger to smaller diameter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assuming-simple_rocket-is-an-initialized-calculatecop-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assuming 'simple_rocket' is an initialized CalculateCOP object
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#calculatecop-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      CalculateCOP Class
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CalculateCOP Class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rocket-with-a-straight-body-tube" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rocket with a straight body tube
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rocket-with-a-transition-from-a-larger-to-smaller-diameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rocket with a transition from a larger to smaller diameter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assuming-simple_rocket-is-an-initialized-calculatecop-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assuming 'simple_rocket' is an initialized CalculateCOP object
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p>Generated markdown
+The Barrowman equations permit you to determine the stability of your rocket by finding the location of the center of pressure (CP). The value computed is the distance from the tip of the rocket's nose to the CP. In order for your rocket to be stable, the CP must be located behind the center of gravity (CG).</p>
+<p>You can find the CG of your rocket by simply finding its balance point after loading the recovery system and motor. The distance from the tip of the rocket's nose to this balance point is the CG location. For a stable flight, the calculated CP distance should be greater than the measured CG distance by at least one rocket body diameter. This is called "one caliber stability".</p>
+<hr />
+<h2 id="calculatecop-class"><code>CalculateCOP</code> Class</h2>
+<p>This class implements the Barrowman equations to calculate the Center of Pressure for a subsonic rocket. It accounts for contributions from the nose cone, body transitions, and fins.</p>
+<h3 id="initialization">Initialization</h3>
+<p>To begin, import the class and create an instance of it by providing your rocket's geometric parameters. All length-based units must be consistent (e.g., all in inches or all in centimeters).</p>
+<p><strong>Example 1: Simple Rocket (No Transitions)</strong></p>
+<p>For a rocket with a single body tube diameter, set the transition parameters to zero and the transition diameters equal to the body diameter.</p>
+<p>```python
+from cop_calculator.calculator import CalculateCOP</p>
+<h1 id="rocket-with-a-straight-body-tube">Rocket with a straight body tube</h1>
+<p>simple_rocket = CalculateCOP(
+    nose_type='ogive',
+    Ln=12.5,
+    d=5.54,
+    CR=10.0,
+    CT=4.0,
+    S=5.25,
+    LF=6.5,  # Calculated from S and XR
+    R=2.77,  # d/2
+    XR=3.5,
+    XB=27.0,
+    N=3,
+    # No transition section
+    dF=5.54, # Same as d
+    dR=5.54, # Same as d
+    Lt=0.0,
+    Xp=0.0
+)</p>
+<p>Example 2: Rocket with a Transition (e.g., a payload bay reducer)</p>
+<p>Generated python
+from cop_calculator.calculator import CalculateCOP</p>
+<h1 id="rocket-with-a-transition-from-a-larger-to-smaller-diameter">Rocket with a transition from a larger to smaller diameter</h1>
+<p>transition_rocket = CalculateCOP(
+    nose_type='cone',
+    Ln=20.0,
+    d=7.6,
+    CR=15.0,
+    CT=7.0,
+    S=8.0,
+    LF=9.43, # Calculated from S and XR
+    R=3.8,   # d/2
+    XR=5.0,
+    XB=45.0,
+    N=4,
+    # Transition section details
+    dF=10.0, # Diameter at the front of the transition
+    dR=7.6,  # Diameter at the rear of the transition (matches body tube d)
+    Lt=8.0,  # Length of the transition
+    Xp=20.0  # Distance from nose tip to start of transition
+)
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Python
+IGNORE_WHEN_COPYING_END
+Constructor Parameters</p>
+<p>The following parameters must be provided when creating a CalculateCOP object.</p>
+<p>Parameter   Symbol  Type    Description
+nose_type   -   str The shape of the nose cone. Must be either 'ogive' or 'cone'.
+Ln  L<sub>N</sub>   float   The length of the nose cone.
+d   d   float   The diameter at the base of the nose cone (typically the main body tube diameter).
+dF  d<sub>F</sub>   float   The diameter at the front of a transition section. For a simple rocket, this is the same as d.
+dR  d<sub>R</sub>   float   The diameter at the rear of a transition section. For a simple rocket, this is the same as d.
+Lt  L<sub>T</sub>   float   The length of the transition section. Set to 0.0 for a simple rocket.
+Xp  X<sub>P</sub>   float   The distance from the tip of the nose cone to the front of the transition section.
+CR  C<sub>R</sub>   float   The Fin Root Chord: the length of the fin where it attaches to the body.
+CT  C<sub>T</sub>   float   The Fin Tip Chord: the length of the fin at its outermost edge.
+S   S   float   The Fin Semispan: the height of a single fin, measured from the body outwards.
+LF  L<sub>F</sub>   float   The length of the fin mid-chord line. This can be calculated as sqrt(S² + XR²).
+R   R   float   The radius of the rocket body tube at the aft end (equal to d / 2).
+XR  X<sub>R</sub>   float   The Fin Sweep Distance: the horizontal distance from the fin root leading edge to the fin tip leading edge.
+XB  X<sub>B</sub>   float   The distance from the nose tip to the fin root chord's leading edge.
+N   N   int The total number of fins on the rocket.
+Methods
+net_COP()</p>
+<p>This is the primary method to call. It calculates the overall Center of Pressure (X) for the entire rocket by combining all component contributions. The result is the distance from the tip of the nose cone.</p>
+<p>Usage:</p>
+<p>Generated python</p>
+<h1 id="assuming-simple_rocket-is-an-initialized-calculatecop-object">Assuming 'simple_rocket' is an initialized CalculateCOP object</h1>
+<p>center_of_pressure = simple_rocket.net_COP()
+print(f"The net Center of Pressure is {center_of_pressure:.2f} units from the nose tip.")
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Python
+IGNORE_WHEN_COPYING_END</p>
+<p>Returns:</p>
+<p>(float): The final Center of Pressure location.</p>
+<p>Component Calculation Methods</p>
+<p>These methods allow for inspecting the individual parts of the COP calculation. They are called internally by net_COP() but can be used for debugging or analysis.</p>
+<p>nose_contribution()</p>
+<p>Calculates the location of the center of pressure for the nose cone alone.</p>
+<p>Returns: (float)</p>
+<p>transition_contribution()</p>
+<p>Calculates the location of the center of pressure for the transition section. If no valid transition exists (e.g., Lt=0), this method will print a warning and return 0.</p>
+<p>Returns: (float)</p>
+<p>fin_contribution()</p>
+<p>Calculates the location of the center of pressure for the fin set alone.</p>
+<p>Returns: (float)</p>
+<p>constant_calculations()</p>
+<p>Calculates the normal force coefficient derivatives (C<sub>N</sub>) for the nose, transition, and fins. These constants represent how much force each component generates.</p>
+<p>Returns: A tuple (cnn, cnt, cnf) containing the three float constants.</p>
+<p>Generated code
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+IGNORE_WHEN_COPYING_END</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
