@@ -1,0 +1,21 @@
+# In mkdocs.yml
+site_name: Rocket COP Calculator
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# This creates the navigation bar for your site
+nav:
+  - 'Home': 'index.md'
+  - 'API Reference': 'api.md'
