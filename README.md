@@ -4,6 +4,12 @@
 
 A Python library for computing the Center of Pressure (COP) of model rockets using the Barrowman equations. This tool provides accurate aerodynamic analysis for rocket stability calculations.
 
+I used this tool to help find the Center of Pressure of my L1 certificaiton "Super Rocket" (a Loc Precision Hi-Tech H45) pictured below. 
+
+![IMG_6991](https://github.com/user-attachments/assets/38d721f7-f67b-4c1c-943a-2e393f6fadae)
+
+
+
 ## Features
 
 - Implements the Barrowman equations for subsonic model rockets
