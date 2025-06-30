@@ -1,5 +1,3 @@
-# In .github/workflows/ci.yml
-
 name: Python Test and Deploy Docs
 
 on:
@@ -28,11 +26,13 @@ jobs:
 
   deploy-docs:
     name: Deploy Documentation to GitHub Pages
-    # This job depends on the 'test' job finishing successfully
     needs: test
     runs-on: ubuntu-latest
-    # This condition ensures deployment only happens on pushes to the main branch
     if: github.ref == 'refs/heads/main'
+    
+    permissions:
+      contents: write
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
