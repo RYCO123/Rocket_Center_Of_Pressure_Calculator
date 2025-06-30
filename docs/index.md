@@ -1,29 +1,44 @@
-# Welcome to the Rocket COP Calculator
-
-![CI/CD Status](https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>/actions/workflows/ci.yml/badge.svg)
+# Rocket COP Calculator
 
 This project provides a Python class to calculate a rocket's Center of Pressure (COP) using the subsonic Barrowman method. It is designed to be a simple, reusable tool for model rocket analysis.
 
-This project is automatically tested and deployed using GitHub Actions.
-
 ## Quick Start
 
-To get started, install the necessary packages and use the `CalculateCOP` class.
+Install dependencies and use the `CalculateCOP` class:
 
 ```python
-from cop_calculator.calculator import CalculateCOP
+from calculator import CalculateCOP
 
-# Define your rocket's parameters
 params = {
-    'nose_type': 'cone',
-    'Ln': 12.5, 'd': 5.54, 'CR': 10.0, 'CT': 0.0,
-    'S': 5.25, 'LF': 6.5, 'R': 2.77, 'XR': 9.0,
-    'XB': 27.0, 'N': 3, 'dF': 5.54, 'dR': 5.54,
-    'Lt': 0.0, 'Xp': 0.0
+    'nose_type': 'ogive',
+    'Ln': 12.5,
+    'd': 5.54,
+    'dF': 5.54,
+    'dR': 5.54,
+    'Lt': 0.0,
+    'Xp': 0.0,
+    'CR': 10.0,
+    'CT': 0.0,
+    'S': 5.25,
+    'LF': 6.5,
+    'R': 2.77,
+    'XR': 9.0,
+    'XB': 27.0,
+    'N': 3,
 }
 
-# Calculate the COP
-rocket = CalculateCOP(**params)
-cop_location = rocket.net_COP()
+cop = CalculateCOP(**params)
+print(f"Center of Pressure: {cop.net_COP():.2f} units from nose tip")
+```
 
-print(f"The Center of Pressure is {cop_location:.2f} units from the nose tip.")
+See the [API Reference](api.md) for parameter details.
+
+## Theory & References
+
+The Center of Pressure is calculated using the Barrowman equations, considering nose, transition, and fin contributions. For stability, the COP should be behind the rocket's center of gravity (CG) by at least one body diameter ("one caliber stability").
+
+For a diagram and detailed explanation of each variable, see the [Barrowman Equations page](https://www.rocketmime.com/rockets/Barrowman.html).
+
+![CI/CD Status](https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>/actions/workflows/ci.yml/badge.svg)
+
+This project is automatically tested and deployed using GitHub Actions.

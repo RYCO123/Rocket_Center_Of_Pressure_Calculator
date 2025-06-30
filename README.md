@@ -1,91 +1,78 @@
-# Rocket CoP Calculator
+# Rocket COP Calculator
 
-A Python library for computing the Center of Pressure (CoP) of model rockets using the Barrowman equations. This tool provides accurate aerodynamic analysis for rocket stability calculations.
+![CI](https://github.com/RYCO123/Rocket_Center_Of_Pressure_Calculator/actions/workflows/ci.yml/badge.svg)
+
+A Python library for computing the Center of Pressure (COP) of model rockets using the Barrowman equations. This tool provides accurate aerodynamic analysis for rocket stability calculations.
 
 ## Features
 
-- **Modular Design**: Clean separation of geometry, calculations, and utilities
-- **Data-Driven**: Rocket configurations loaded from JSON files
-- **Barrowman Equations**: Implements standard aerodynamic theory for rocket stability
-- **Multiple Components**: Supports nosecones, body tubes, and fin sets
-- **Extensible**: Easy to add new component types and calculation methods
+- Implements the Barrowman equations for subsonic model rockets
+- Supports both ogive and cone nose shapes, transitions, and fins
+- Simple, single-class API (`CalculateCOP`)
+- Unit-agnostic: use any consistent length units
 
 ## Installation
 
-1. Clone the repository:
+Clone the repository and install dependencies:
+
 ```bash
 git clone <repository-url>
 cd rocket_cop
-```
-
-2. Install dependencies:
-```bash
 pip install -r requirements.txt
 ```
 
 ## Usage
 
-### Basic Usage
-
-Run the example script to calculate CoP for the LOC Precision Hi-Tech H45 rocket:
-
-```bash
-python examples/compute_hi_tech.py
-```
-
-### Programmatic Usage
+### Basic Example
 
 ```python
-from rocket.geometry import load_rocket_from_config
-from rocket.cop_calc import compute_overall_cop
+from calculator import CalculateCOP
 
-# Load rocket configuration
-rocket = load_rocket_from_config('rocket/config/hi_tech.json')
-
-# Calculate Center of Pressure
-cop_m, contributions = compute_overall_cop(rocket)
-
-print(f"Overall CoP: {cop_m:.4f} m from nose tip")
-```
-
-## Project Structure
-
-```
-rocket_cop/
-├── rocket/                 # Main package
-│   ├── config/            # Rocket configuration files
-│   ├── geometry.py        # Component data classes and loading
-│   ├── cop_calc.py        # Barrowman equations implementation
-│   └── utils.py           # Utility functions
-├── examples/              # Example scripts
-├── tests/                 # Unit tests
-├── requirements.txt       # Python dependencies
-└── README.md             # This file
-```
-
-## Configuration
-
-Rocket configurations are stored in JSON format. Each component includes:
-
-- **Nosecones**: Type (ogive/cone), length, base diameter
-- **Body Tubes**: Name, length, diameter  
-- **Fin Sets**: Count, root/tip chord, span, sweep, thickness, position
-
-Example configuration:
-```json
-{
-  "name": "My Rocket",
-  "reference_diameter_mm": 66.8,
-  "components": [
-    {
-      "part": "nosecone",
-      "type": "ogive",
-      "length_mm": 254.0,
-      "base_diameter_mm": 66.8
-    }
-  ]
+params = {
+    'nose_type': 'ogive',
+    'Ln': 12.5,
+    'd': 5.54,
+    'dF': 5.54,
+    'dR': 5.54,
+    'Lt': 0.0,
+    'Xp': 0.0,
+    'CR': 10.0,
+    'CT': 0.0,
+    'S': 5.25,
+    'LF': 6.5,
+    'R': 2.77,
+    'XR': 9.0,
+    'XB': 27.0,
+    'N': 3,
 }
+
+cop = CalculateCOP(**params)
+print(f"Center of Pressure: {cop.net_COP():.2f} units from nose tip")
 ```
+
+### Parameters
+
+The `CalculateCOP` class requires the following parameters (all units must be consistent):
+
+| Parameter | Description |
+|-----------|-------------|
+| nose_type | Nose cone shape: `'ogive'` or `'cone'` |
+| Ln        | Length of nose cone |
+| d         | Diameter at base of nose cone |
+| dF        | Diameter at front of transition (set equal to `d` if no transition) |
+| dR        | Diameter at rear of transition (set equal to `d` if no transition) |
+| Lt        | Length of transition (set to 0.0 if no transition) |
+| Xp        | Distance from nose tip to front of transition (set to 0.0 if no transition) |
+| CR        | Fin root chord |
+| CT        | Fin tip chord |
+| S         | Fin semispan (height of one fin) |
+| LF        | Length of fin mid-chord line |
+| R         | Radius of body at aft end |
+| XR        | Fin sweep distance (root leading edge to tip leading edge, parallel to body) |
+| XB        | Distance from nose tip to fin root chord leading edge |
+| N         | Number of fins |
+
+For a diagram and detailed explanation of each variable, see the [Barrowman Equations page](https://www.rocketmime.com/rockets/Barrowman.html).
 
 ## Testing
 
@@ -97,13 +84,9 @@ pytest tests/
 
 ## Theory
 
-The Center of Pressure calculation uses the Barrowman equations, which provide:
+The Center of Pressure is calculated using the Barrowman equations, considering nose, transition, and fin contributions. For stability, the COP should be behind the rocket's center of gravity (CG) by at least one body diameter ("one caliber stability").
 
-- **Nosecone CoP**: Based on shape type (ogive vs cone)
-- **Fin CoP**: Complex calculation considering fin geometry and interference
-- **Body Tubes**: Neglected in simplified model (no normal force contribution)
-
-The overall CoP is calculated as a weighted average of individual component contributions.
+The equations and variable definitions are based on the classic Barrowman method. For more details and a helpful diagram, see [RocketMime's Barrowman Equations page](https://www.rocketmime.com/rockets/Barrowman.html).
 
 ## Contributing
 
@@ -115,4 +98,10 @@ The overall CoP is calculated as a weighted average of individual component cont
 
 ## License
 
-This project is open source. Please see the LICENSE file for details. 
+This project is open source. See the LICENSE file for details.
+
+## References
+
+- Barrowman Equations and variable definitions:  
+  [https://www.rocketmime.com/rockets/Barrowman.html](https://www.rocketmime.com/rockets/Barrowman.html)  
+  This page includes a helpful diagram and detailed explanation of each parameter used in the Barrowman equations. 
