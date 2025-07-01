@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 class CalculateCOP:
     """
@@ -119,6 +120,50 @@ class CalculateCOP:
         if self.dF == self.dR or self.Lt == 0 or self.Xp == 0:
             cnt = 0 
         return ((cnn * Xn) + (cnt * Xt) + (cnf * Xf)) / (cnn + cnt + cnf)
+
+    def visualize_rocket(self, show_plot=True, save_path=None):
+        """
+        Generate 3D visualization of the rocket with COP location.
+        
+        Args:
+            show_plot (bool): Whether to display the plot
+            save_path (str): Path to save the plot image (optional)
+            
+        Returns:
+            matplotlib.figure.Figure: The generated figure
+        """
+
+        from visualization import visualize_rocket
+        
+        # Calculate COP location
+        cop_location = self.net_COP()
+        
+        # Create 3D plot using the new visualization function
+        fig = visualize_rocket(
+            nose_type=self.nose_type,
+            Ln=self.Ln,
+            d=self.d,
+            Lt=self.Lt,
+            dF=self.dF,
+            dR=self.dR,
+            Xp=self.Xp,
+            N=self.N,
+            CR=self.CR,
+            CT=self.CT,
+            S=self.S,
+            XB=self.XB,
+            XR=self.XR,
+            cp_location=cop_location
+        )
+        
+        if save_path:
+            fig.savefig(save_path, dpi=300, bbox_inches='tight')
+        
+        if show_plot:
+            plt.show()
+        
+        return fig
+            
 if __name__ == '__main__':
     params = {
         'nose_type': 'ogive',

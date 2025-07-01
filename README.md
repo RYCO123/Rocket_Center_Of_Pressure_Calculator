@@ -16,6 +16,7 @@ I used this tool to help find the Center of Pressure of my L1 certificaiton "Sup
 - Supports both ogive and cone nose shapes, transitions, and fins
 - Simple, single-class API (`CalculateCOP`)
 - Unit-agnostic: use any consistent length units
+- **3D Visualization**: Interactive 3D plots showing rocket geometry and COP location
 
 ## Installation
 
@@ -36,6 +37,8 @@ Run the included example script:
 ```bash
 python example.py
 ```
+
+This will calculate the COP and display an interactive 3D visualization of the rocket.
 
 ### Basic Example
 
@@ -62,7 +65,23 @@ params = {
 
 cop = CalculateCOP(**params)
 print(f"Center of Pressure: {cop.net_COP():.2f} units from nose tip")
+
+# Generate 3D visualization
+cop.visualize_rocket()
 ```
+
+### 3D Visualization
+
+The library includes an interactive 3D visualization feature that shows:
+
+- **Rocket Body**: Complete 3D model including nose cone, transition, and body tube
+- **Fins**: 3D fin geometry with proper positioning and rotation
+- **Center of Pressure**: Marked as a blue dot at the calculated location
+- **Interactive Controls**: Rotate, zoom, and pan the 3D model
+
+**Visualization Screenshot:**
+<!-- TODO: Add screenshot of 3D rocket visualization here -->
+![3D Rocket Visualization](docs/images/rocket_visualization.png)
 
 ### Parameters
 

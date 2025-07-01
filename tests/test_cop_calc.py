@@ -31,8 +31,7 @@ test_rockets = [
             'dF': 2.6,         
             'dR': 2.6,      
             'Lt': 0.0, 
-            'Xp': 0.0,     
-            'N': 3,        
+            'Xp': 9.0,             
             'CR': 4.527,       
             'CT': 2.55,      
             'S': 3.93,    
@@ -40,6 +39,7 @@ test_rockets = [
             'XR': 0.511,    
             'R': 1.3, 
             'XB': 44.488,
+            'N': 3,
         },
         41.71, # this is for a LOC Precision HI-TECH H45 (Super Rocket found in the READ ME), COP is found on their website
     ),
@@ -51,15 +51,15 @@ test_rockets = [
             'dF': 3.0,   
             'dR': 4.0,      
             'Lt': 2.5,        
-            'Xp': 11.259,   
-            'N': 3,     
+            'Xp': 25.259,       
             'CR': 10.5,
             'CT': 2.559,       
             'S': 4.25,         
             'LF': 7.0,    
             'XR': 7.87,      
             'R': 1.5,    
-            'XB': 106.299, 
+            'XB': 106.299,
+            'N': 3,
         },
 
         91.3386, # this is for the loc expediter. Used the COP calculated in Open Rocket for verification. This rocket has a transition section
@@ -69,7 +69,7 @@ test_rockets = [
 @pytest.mark.parametrize("params, known_cop", test_rockets)
 def test_cop_within_tolerance(params, known_cop):
     calc = CalculateCOP(**params)
-    computed_cop = calc.net_COP()  # or whichever method returns the COP value
+    computed_cop = calc.net_COP()
     tol = 0.05  # 5% tolerance
     lower_bound = known_cop * (1 - tol)
     upper_bound = known_cop * (1 + tol)

@@ -79,6 +79,38 @@ print(f"The net Center of Pressure is {cop_location:.2f} units from the nose tip
 **Returns:**
 - `float`: The final Center of Pressure location.
 
+#### `visualize_rocket(show_plot=True, save_path=None)`
+
+Generates an interactive 3D visualization of the rocket with the calculated Center of Pressure location.
+
+```python
+# Display interactive 3D plot
+cop.visualize_rocket()
+
+# Save plot to file
+cop.visualize_rocket(save_path="rocket.png")
+
+# Generate plot without displaying
+fig = cop.visualize_rocket(show_plot=False)
+```
+
+**Parameters:**
+- `show_plot` (bool): Whether to display the plot (default: True)
+- `save_path` (str): Path to save the plot image (optional)
+
+**Returns:**
+- `matplotlib.figure.Figure`: The generated figure object
+
+**Visualization Features:**
+- Complete 3D rocket body (nose cone, transition, body tube)
+- 3D fin geometry with proper positioning
+- Center of Pressure marked as blue dot
+- Interactive controls (rotate, zoom, pan)
+
+**Visualization Screenshot:**
+<!-- TODO: Add screenshot of 3D rocket visualization here -->
+![3D Rocket Visualization](images/rocket_visualization_api.png)
+
 #### `nose_contribution()`
 Calculates the location of the center of pressure for the nose cone alone.
 - **Returns:** `float`

@@ -10,6 +10,8 @@ Run the example script to see it in action:
 python example.py
 ```
 
+This will calculate the COP and display an interactive 3D visualization of the rocket.
+
 Or use the `CalculateCOP` class directly:
 
 ```python
@@ -35,9 +37,20 @@ params = {
 
 cop = CalculateCOP(**params)
 print(f"Center of Pressure: {cop.net_COP():.2f} units from nose tip")
+
+# Generate 3D visualization
+cop.visualize_rocket()
 ```
 
-See the [API Reference](api.md) for parameter details.
+## 3D Visualization
+
+The library includes an interactive 3D visualization feature that shows the complete rocket geometry with the calculated Center of Pressure marked as a blue dot.
+
+**Visualization Screenshot:**
+<!-- TODO: Add screenshot of 3D rocket visualization here -->
+![3D Rocket Visualization](images/rocket_visualization.png)
+
+See the [API Reference](api.md) for parameter details and visualization options.
 
 ## Theory & References
 
