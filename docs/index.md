@@ -4,6 +4,8 @@ This project provides a Python class to calculate a rocket's Center of Pressure 
 
 ## Quick Start
 
+[View the source on GitHub](https://github.com/RYCO123/Rocket_Center_Of_Pressure_Calculator)
+
 Run the example script to see it in action:
 
 ```bash
